@@ -632,7 +632,6 @@ export default {
     }
   },
   methods: {
-    //检索报关单list
     searchDeclareHeadListByEntryID(){
       //标签显示
       this.showChildren = false;
@@ -657,110 +656,13 @@ export default {
           _this.declareHeadList = response.data();
       })
     },
-    // 报关单查看事件
-    showChildrenList(row){
-      //详细赋值
-      this.declareHeadDetail = row;
-      //标签显示
-      this.showChildren = true;
-      //报关单详细显示
-      this.declareHeadDetailShow = true;
-
-      var _this = this;
-
-      //获取报关单商品list
-      this.$store
-        .dispatch("getDeclareGoodList")
-        .then(response => {
-            //业务逻辑
-          console.log("getDeclareGoodList")
-          _this.declareGoodList = response.data();
-        });
-
-      //获取集装箱信息list
-      this.$store
-        .dispatch("getDeclareBoxList")
-        .then(response => {
-          //业务逻辑
-          console.log("getDeclareBoxList")
-          _this.declareBoxList = response.data();
-        });
-
-      //获取海关计税list
-      this.$store
-        .dispatch("getCustomsTaxList")
-        .then(response => {
-          //业务逻辑
-          console.log("getCustomsTaxList")
-          _this.customsTaxList = response.data();
-        });
-
-      //获取报关单随附单据list
-      this.$store
-        .dispatch("getdeclareBillList")
-        .then(response => {
-            //业务逻辑
-            console.log("getdeclareBillList")
-            _this.declareBillList = response.data();
-        });
-    },
-    //报关单商品查看事件
-    declareGoodDetailClick(row){
-      //详细赋值
-      this.declareGooddetail = row;
-      //报关单商品项详细显示
-      this.declareGoodDetailShow = true;
-    },
-    //集装箱信息查看事件
-    declareBoxDetailClick(row){
-      //详细赋值
-      this.declareBoxDetail = row;
-      //集装箱信息详细显示
-      this.declareBoxDetailShow = true;
-    },
-    //海关计税查看事件
-    customsTaxDetailClick(row){
-      //详细赋值
-      this.customsTaxDetail = row;
-      //海关计税详细显示
-      this.customsTaxDetailShow = true;
-    },
-    //报关单随附单据查看事件
-    declareBillDetailClick(row){
-      //详细赋值
-      this.declareBillDetail = row;
-      //报关单随附单据详细显示
-      this.declareBillDetailShow = true;
-    },
-    //报关单表头list翻页事件
-    declareHeadPagechange(val){
-      this.declareHeadCurrentPage = val;
-    },
-    //商品项List翻页事件
-    declareGoodPagechange(val){
-      this.declareGoodCurrentPage = val;
-    },
-    //集装箱List翻页事件
-    declareBoxPagechange(val){
-      this.declareBoxCurrentPage = val;
-    },
-    //海关计税分页事件
-    customsTaxPagechange(val){
-      this.customsTaxCurrentPage = val;
-    },
-    //报关单随附单据分页事件
-    declareBillPagechange(val){
-      this.customsTaxCurrentPage = val;
-    }
   },
   mounted(){
-    //初始化加载
     var _this = this;
     this.$store
       .dispatch("searchDeclareHeadListByEntryID",this.searchInput)
       .then(response => {
           console.log("searchDeclareHeadListByEntryID");
-          //检索后报关单表头list赋值
           _this.declareHeadList = response.data();
       })
   },
